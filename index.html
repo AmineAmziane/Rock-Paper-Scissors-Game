@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@900&display=swap" rel="stylesheet">
+  <title>
+     Frontend Mentor | Rock, Paper, Scissors
+  </title>
+  <style>
+  	*{
+  		margin: 0;
+  		padding: 0;
+  		box-sizing: border-box;
+  	}
+  	html,body{
+  		overflow-x: hidden;
+      background-color: rgba(4,10,74,1);
+  	}
+    .game{
+    	position: relative;
+    	left: 0;
+    	top:0;
+    	width: 100vw;
+    	min-height: auto;
+    	background-color: rgba(4,10,74,1);
+    	overflow: hidden;
+    	padding-bottom:100px; 
+    }
+    .head{
+    	position: relative;
+    	left: 0%;
+    	margin:auto;
+    	margin-top:20px;
+    	width: 60%;
+    	height: 120px;
+    	border-radius: 10px;
+    	border:1px solid rgba(255,255,255,0.5);
+    	padding: 8px;
+    	display: flex;
+    }
+    .head img{
+    	float: left;
+    	padding: 8px;
+    	display: inline-block;
+    	width: 120px;
+    	height: 100px;
+    	margin:auto 0 auto 0;
+    }
+    .head .score{
+    	float: right;
+    	padding:0px 20px;
+    	display: inline-block;
+    	width: 120px;
+    	height: 100px;
+    	color: black;
+    	background-color: white;	
+    	text-align: center;
+    	border-radius: 1vw;
+    	margin:auto 0 auto auto;
+    	
+    }
+    .head .score p{
+         font-size: 30px;
+         font-weight: bold;
+    }
+    .head .score{
+    	font-size: 60px;
+    }
+    .body{
+    	position: relative;
+    	border:0px solid black;
+    	display: flex;
+    	justify-content: center;
+    	align-items: center;
+    	margin-top:0;
+    	position: relative;
+    	user-select: none;
+    	height: 400px;
+    }
+    .body .triangle {
+    	width: 250px; 
+    	height: 200px; 
+    	position: relative;
+    	margin:0 auto 0 auto;
+    }
+    .body .paper,
+    .body .rock,
+    .body .scissors{
+    	position: absolute;
+    	width: 30px; 
+    	height: 30px; 
+      background-color: white;
+      border-radius: 50%;
+      padding:70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin:0px auto 0 auto;
+      border:1px solid rgba(0,0,0,0.8);
+      box-shadow: 0px 0px 0px 0.9px rgba(255,255,255,0.3);
+    }
+    .body .Card:hover{
+    	box-shadow: 0px 0px 0px 0.9px rgba(255,255,255,0.3),0px 0px 25px 5px rgba(0,0,0,0.5);
+    	transition: 0.1s;
+    }
+    .body .Card:focus{
+    	outline: none;
+    }
+    .body .paper{
+    	margin:-100px 0 0 -100px; 
+    	border:12px solid yellow;
+    }
+    .body .rock{
+    	margin:-100px 0 0 100px; 
+    	border:12px solid red;
+    }
+    .body .scissors{
+    	margin:100px 0 0 0; 
+    	border:12px solid blue;
+    }
+    .body .paper img,
+    .body .rock img,
+    .body .scissors img{
+    	width: 60px;
+    	height: 60px;	
+    }
+    @media only screen and (max-width: 992px) {
+    	  .head{
+    	    width: 80%;
+    	    margin-top:22px;
+        }
+        .body{
+    	    margin-top:0px;
+        }
+        .body .triangle {
+    	    width: 250px; 
+    	    height: 200px; 
+        }
+        .body .paper,
+        .body .rock,
+        .body .scissors{
+    	    width: 30px; 
+    	    height: 30px; 
+          padding:60px;
+        }
+        .body .paper{
+    	    border:10px solid yellow;
+        }
+        .body .rock{
+    	    border:10px solid red;
+        }
+        .body .scissors{
+    	    border:10px solid blue;
+    	    margin-top: 80px;
+        }
+        .body .paper img,
+        .body .rock img,
+        .body .scissors img{
+    	    width: 45px;
+    	    height: 50px;	
+        }
+        .game .body .checked{
+    	    margin-top: 20px;
+    	    margin-left:-120px;
+    	  }
+    	  .game .body .checkedpc{
+    	    margin-top: 20px;
+    	    margin-left:120px;
+    	  }
+    	  body .result div{
+    		  margin-top: 320px;
+    	  }
+    	  .game button.RB{
+    		  margin-top: 100px;
+    		  margin-left: 0px;
+    		  left: 50%;
+          transform: translate(-50%, 0);
+    	}
+    }
+    .body .checked{
+    	margin-top: 20px;
+    	margin-left:-250px;
+    }
+    .body .checked::before{
+    	content: "You Picked";
+    	position: absolute;
+    	left: -30px;
+    	top: -100px;
+    	width: 200px;
+    	font-weight: bold;
+    	font-size: 2rem;
+    	text-align: center;
+      color: white;
+    }
+    .body .checkedpc::before{
+    	content: "The House Picked";
+    	position: absolute;
+    	left: -100px;
+    	top: -100px;
+    	width: 300px;
+    	font-weight: bold;
+    	font-size: 2rem;
+    	text-align: center;
+      color: white;
+    }
+    .body .checkedpc{
+    	margin-top: 20px;
+    	margin-left:250px;
+    }
+    .result{
+    	position: fixed;
+    	left: 0;
+    	top: 0;
+    	width: 100%;
+    	height: 100%;
+    	display: flex;
+    	align-items: center;
+    	justify-content: center;
+    	font-size: 2rem;
+    	background-color: rgba(255,255,255,0.3);
+    	z-index: 999;
+    	text-align: center;
+    }
+    .result div{
+         text-align: center;
+         display: block;
+         margin-top: 150px;
+    }
+    .result h1{
+         font-family: 'Permanent Marker', cursive;
+    }
+    .result button{
+          padding: 15px 50px;
+          border-radius: 10px;
+          border:1px solid white;
+          color: black;
+          cursor: pointer;
+          font-weight: bold;
+    }
+    .result button:hover{
+    	color: red;
+    	box-shadow: 0 0 20px 3px #000000;
+    	transition: 0.1s;
+    }
+    .rules{
+    	position: fixed;
+    	left: 0;
+    	top:0;
+    	width: 100vw;
+    	height: 100vh;
+    	background-color: rgba(0,0,0,0.5);
+    	overflow: hidden;
+    	display: flex;
+    	align-items: center;
+    	justify-content: center;
+    	display: none;
+    }
+    .rules .rulesR .headR{
+    	height: auto;
+    	min-height: 50px;
+    }
+    .rules .rulesR{
+    	background-color: white;
+    	padding: 25px;
+      border-radius: 10px;
+      border:1px solid rgba(0,0,0,0.3);
+    }
+    .rules .rulesR .headR h1,.rules .rulesR .headR img{
+    	display: inline-block;
+      margin-bottom: 20px;
+    }
+    .rules .rulesR .headR h1{
+      float: left;
+      font-family: 'Inconsolata', monospace;
+      color:rgba(0,0,0,0.7);
+    }
+    .rules .rulesR .headR img{
+    	float: right;
+    	margin-top: 10px;
+    	cursor: pointer;
+    }
+    .RB{
+    	position: absolute;
+    	bottom: 0;
+    	right: 0;
+    	margin:25px;
+    	padding: 10px 30px;
+    	font-weight: bold;
+    	border-radius: 15px;
+    	background-color: transparent;
+    	color: white;
+    	border:1px solid white;
+    	float: right;
+    }
+    .attribution{
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<div class="game">
+  	  <div class="head">
+  	  	 <img src="images/logo.svg">
+  	  	 <div class="score">
+  	  	 	  <p>Score</p>
+  	  	 	  <h6 class="realScore">0</h6>
+  	  	  </div>
+  	  </div>
+  	  <div class="body">
+  	  	  <img src="images/bg-triangle.svg" class="triangle">
+  	  	  <div class="paper Card" tabindex="0">
+  	  	    <img src="images/icon-paper.svg" >
+  	  	  </div>
+  	  	  <div class="rock Card" tabindex="1">
+  	  	    <img src="images/icon-rock.svg">
+  	  	  </div>
+  	  	  <div class="scissors Card" tabindex="2">
+  	  	    <img src="images/icon-scissors.svg">
+  	  	  </div>
+  	  </div>
+  	  <button class="RB" onClick='disp()'>
+  	    RULES
+      </button>
+  </div>
+<div class="rules">
+  	  <div class="rulesR">
+  	  	  <div class="headR">
+  	  	  	 <h1>RULES</h1>
+  	  	  	 <img src="images/icon-close.svg" class="close">
+  	  	  </div>
+  	  	  <div class="ImgR">
+  	  	  	  <img src="images/image-rules.svg">
+  	  	  </div>
+  	  </div>
+</div>
+<div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Amine Amziane</a>.
+</div>
+<script type="text/javascript">
+var body=document.querySelector('.body');
+var card=document.querySelectorAll('.Card');
+var B__=body.innerHTML;
+var scissors="<div class=\"scissors checked\"><img src=\"images\/icon-scissors.svg\"><\/div>";
+var rock="<div class=\"rock checked\"><img src=\"images\/icon-rock.svg\"><\/div>";
+var paper="<div class=\"paper checked\"><img src=\"images\/icon-paper.svg\"><\/div>";
+var paperpc="<div class=\"paper checkedpc\"><img src=\"images\/icon-paper.svg\"><\/div>";
+var scissorspc="<div class=\"scissors checkedpc\"><img src=\"images\/icon-scissors.svg\"><\/div>";
+var rockpc="<div class=\"rock checkedpc\"><img src=\"images\/icon-rock.svg\"><\/div>";
+var choice=[paper,rock,scissors];
+var choicepc=[paperpc,rockpc,scissorspc];
+var m=Math.floor(Math.random()*3);
+var stat="",boxSh;
+var BSh="0px 0px 0px 0.9px rgba(255,255,255,0.3),0px 0px 25px 5px rgba(0,0,0,0.5),0px 0px 0px 46px rgba(175, 176, 105,0.1), 0px 0px 0px 82px rgba(130, 132, 130,0.1), 0px 0px 0px 118px rgba(178, 181, 178,0.1)";
+  if (sessionStorage.clickcount) {
+  		document.querySelector('.realScore').innerHTML=sessionStorage.clickcount;
+  }
+  function clickCounter() {
+    if (typeof(Storage) !== "undefined") {
+      if (sessionStorage.clickcount) {
+         sessionStorage.clickcount = Number(sessionStorage.clickcount)+1;
+      }else{
+         sessionStorage.clickcount = 1;
+      }
+    }
+  }
+  function disp(){
+     document.querySelector('.rules').style.display="flex";  
+  }
+  document.querySelector('.close').addEventListener('click',function(){
+     document.querySelector('.rules').style.display="none";
+  });
+  function Refresh(){
+  		body.innerHTML=B__;window.location.reload(); 
+  }
+  for(var i=0;i<card.length;i++){
+    card[i].addEventListener('click',function(){
+    body.innerHTML=""+choice[this.tabIndex]+"";
+    setTimeout(function(){
+        body.innerHTML+=(""+choicepc[m]+"");
+    },1000);
+    if(this.tabIndex == m){
+        stat="<h1 style='color:#00004d;'>Tie !</h1>";boxSh=0;
+    }
+    else {
+        if(this.tabIndex==0&&m==2 ||this.tabIndex==1&&m==0||this.tabIndex==2&&m==1){
+            stat="<h1 style='color:#ff3333;'>You Lose</h1>";boxSh=2;
+        }
+        else if(this.tabIndex==1&&m==2||this.tabIndex==2&&m==0||this.tabIndex==0&&m==1){
+            stat="<h1 style='color:#33ff33;'>You Win</h1>";boxSh=1;
+        }
+    }
+  setTimeout(function(){
+      document.body.innerHTML+=("<div class='result'><div>"+stat+"<button onclick='Refresh()'>PLAY AGAIN</button></div></div>");
+      if(boxSh==1){
+         document.querySelector('.checked').style.boxShadow=BSh;
+         clickCounter();
+      }else if(boxSh==2){
+         document.querySelector('.checkedpc').style.boxShadow=BSh;  	 }
+      },1000);
+    });
+  }
+    
+  </script>
+</body>
+</html>
